@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="British English">
+<head>
+    <meta charset="UTF-8" />
+    <title>Collagram</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+:root {
+    --primary: #6C63FF;
+    --primary-dark: #4B47B6;
+    --accent: #FF6584;
+    --accent2: #43E6B0;
+    --bg: #f7f8fc;
+    --header-bg: linear-gradient(90deg, #6C63FF 0%, #43E6B0 100%);
+    --footer-bg: linear-gradient(90deg, #4B47B6 0%, #FF6584 100%);
+    --text: #22223B;
+    --text-light: #fff;
+    --input-bg: rgba(233,234,252,0.7);
+    --input-border: #bfc6ff;
+    --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    --glass-bg: rgba(255,255,255,0.7);
+    --glass-border: 1.5px solid rgba(108,99,255,0.18);
+    --blur: blur(16px);
+    --transition: 0.25s cubic-bezier(.4,0,.2,1);
+}
+body {
+    background: linear-gradient(120deg, #f7f8fc 60%, #e9eafc 100%);
+    color: var(--text);
+    font-family: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    transition: background var(--transition), color var(--transition);
+}
+.header {
+    background: var(--header-bg);
+    color: var(--text-light);
+    box-shadow: var(--shadow);
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: var(--blur);
+    border-bottom: var(--glass-border);
+    transition: background var(--transition);
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    height: 70px;
+}
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: var(--text-light);
+    text-decoration: none;
+    text-shadow: 1px 2px 8px #43e6b066;
+    transition: color var(--transition);
+}
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+.nav-menu a {
+    color: #e0e7ff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition);
+    font-weight: 600;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    background: transparent;
+    position: relative;
+}
+.nav-menu a.active,
+.nav-menu a:hover {
+    background: var(--accent2);
+    color: var(--primary-dark);
+    box-shadow: 0 2px 8px #43e6b033;
+}
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.nav-actions a, .sidebar-theme-toggle {
+    padding: 8px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 1.05rem;
+    transition: background var(--transition), color var(--transition), border var(--transition), transform var(--transition);
+    border: none;
+    cursor: pointer;
+}
+.nav-actions .signup {
+    background: var(--accent);
+    color: #fff;
+    box-shadow: 0 2px 8px #ff658433;
+}
+.nav-actions .signup:hover {
+    background: #ff8fa3;
+    color: #fff;
+    transform: translateY(-2px) scale(1.04);
+}
+.nav-actions .login {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+.nav-actions .login:hover {
+    background: var(--primary-dark);
+    color: #fff;
+    border-color: var(--primary-dark);
+    transform: translateY(-2px) scale(1.04);
+}
+.search-box {
+    position: relative;
+    margin-left: 18px;
+}
+.search-box input {
+    padding: 9px 36px 9px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--input-border);
+    outline: none;
+    font-size: 1rem;
+    background: var(--input-bg);
+    color: var(--primary-dark);
+    transition: border var(--transition), background var(--transition);
+    box-shadow: 0 2px 8px #6c63ff11;
+    backdrop-filter: var(--blur);
+}
+.search-box input:focus {
+    border-color: var(--primary);
+    background: #fff;
+}
+.search-box button {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    bottom: 4px;
+    background: var(--accent2);
+    border: none;
+    color: var(--primary-dark);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0 10px;
+    border-radius: 6px;
+    transition: background var(--transition), color var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.search-box button:hover {
+    background: var(--primary);
+    color: #fff;
+}
+main {
+    flex: 1 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    background: transparent;
+    transition: background var(--transition);
+}
+section {
+    background: var(--glass-bg);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    padding: 48px 36px;
+    max-width: 440px;
+    width: 100%;
+    border: var(--glass-border);
+    margin: 32px 0;
+    animation: popin 0.7s cubic-bezier(.68,-0.55,.27,1.55);
+    transition: background var(--transition), box-shadow var(--transition);
+}
+@keyframes popin {
+    0% { transform: scale(0.95) translateY(30px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+section h2 {
+    margin-top: 0;
+    font-size: 2.2rem;
+    color: var(--primary-dark);
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+    background: linear-gradient(90deg, var(--primary), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+form {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+label {
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: var(--glass-border);
+    margin-top: 7px;
+    font-size: 1rem;
+    background: var(--input-bg);
+    color: var(--primary-dark);
+    transition: border var(--transition), background var(--transition);
+    box-shadow: 0 2px 8px #6c63ff11;
+    backdrop-filter: var(--blur);
+}
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--primary);
+    background: #fff;
+}
+button[type="submit"] {
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent2) 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.15rem;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 0;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background var(--transition), transform var(--transition);
+    box-shadow: 0 2px 8px #6c63ff33;
+    letter-spacing: 1px;
+}
+button[type="submit"]:hover {
+    background: linear-gradient(90deg, var(--accent2) 0%, var(--primary) 100%);
+    transform: translateY(-2px) scale(1.04);
+}
+.or-divider {
+    margin: 32px 0 18px 0;
+    text-align: center;
+    color: #8a99b3;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+}
+.or-divider:before,
+.or-divider:after {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    height: 2px;
+    background: var(--accent2);
+    vertical-align: middle;
+    margin: 0 10px;
+    border-radius: 2px;
+}
+.social-signup {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+.social-signup a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #fff;
+    border: 2px solid var(--input-border);
+    border-radius: 8px;
+    padding: 12px;
+    color: var(--primary-dark);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background var(--transition), border var(--transition), color var(--transition), transform var(--transition);
+    font-size: 1.05rem;
+    box-shadow: 0 2px 8px #bfc6ff22;
+}
+.social-signup a:hover {
+    background: var(--accent2);
+    color: #fff;
+    border-color: var(--accent2);
+    transform: translateY(-2px) scale(1.04);
+}
+.social-signup img {
+    width: 24px;
+    height: 24px;
+    filter: drop-shadow(0 2px 4px #43e6b033);
+}
+.terms {
+    font-size: 1rem;
+    color: #8a99b3;
+}
+.terms a {
+    color: var(--primary);
+    text-decoration: underline;
+    font-weight: 600;
+}
+.login-link {
+    margin-top: 36px;
+    text-align: center;
+    font-size: 1.05rem;
+}
+.login-link a {
+    color: var(--accent);
+    font-weight: 700;
+    text-decoration: underline;
+    margin-left: 4px;
+    transition: color var(--transition);
+}
+.login-link a:hover {
+    color: var(--primary-dark);
+}
+.footer {
+    background: var(--footer-bg);
+    color: #e0e7ff;
+    padding: 36px 0 0 0;
+    font-size: 1rem;
+    margin-top: 48px;
+    box-shadow: 0 -2px 8px #6c63ff11;
+    flex-shrink: 0;
+    backdrop-filter: var(--blur);
+    border-top: var(--glass-border);
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    transition: background var(--transition);
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 28px;
+}
+.footer-logo .logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-shadow: 1px 2px 8px #ff658433;
+}
+.footer-menu,
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.footer-menu a,
+.footer-links a {
+    color: #e0e7ff;
+    text-decoration: none;
+    transition: color var(--transition), background var(--transition);
+    font-size: 1.05rem;
+    font-weight: 500;
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+.footer-menu a:hover,
+.footer-links a:hover {
+    color: var(--accent2);
+    background: var(--glass-bg);
+}
+.footer-bottom {
+    text-align: center;
+    color: #bfc6ff;
+    font-size: 1rem;
+    padding: 20px 0 14px 0;
+    border-top: 1.5px solid #bfc6ff44;
+    margin-top: 28px;
+    letter-spacing: 1px;
+}
+.universal-sidebar.sophisticated {
+    background: var(--glass-bg);
+    border-right: var(--glass-border);
+    box-shadow: var(--shadow);
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+    backdrop-filter: var(--blur);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 220px;
+    min-width: 220px;
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: width var(--transition), min-width var(--transition);
+}
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 20px 16px 20px;
+}
+.avatar-gradient {
+    background: linear-gradient(135deg, var(--primary) 60%, var(--accent2) 100%);
+    border-radius: 50%;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background: #fff;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.user-name {
+    font-weight: 700;
+    color: var(--primary-dark);
+}
+.user-email {
+    font-size: 0.95rem;
+    color: #888;
+}
+.universal-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.universal-sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 24px;
+    color: var(--primary-dark);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.07rem;
+    transition: background var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition);
+    background: transparent;
+}
+.universal-sidebar nav ul li a .material-icons {
+    font-size: 1.3em;
+    color: var(--primary);
+    transition: color var(--transition);
+}
+.universal-sidebar nav ul li a:hover,
+.universal-sidebar nav ul li.active a {
+    background: var(--accent2);
+    color: #fff;
+    box-shadow: 0 4px 16px #43e6b044;
+    transform: translateX(4px) scale(1.03);
+}
+.universal-sidebar nav ul li a:hover .material-icons,
+.universal-sidebar nav ul li.active a .material-icons {
+    color: #fff;
+}
+.sidebar-footer {
+    padding: 18px 0 24px 0;
+    display: flex;
+    justify-content: center;
+}
+.sidebar-theme-toggle {
+    background: linear-gradient(90deg, var(--primary) 60%, var(--accent2) 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 2px 8px #6c63ff22;
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition), transform var(--transition);
+}
+.sidebar-theme-toggle:hover {
+    background: linear-gradient(90deg, var(--accent2) 0%, var(--primary) 100%);
+    color: #fff;
+    transform: scale(1.08);
+}
+.sidebar-toggle-btn {
+    display: none;
+    position: fixed;
+    top: 18px;
+    left: 18px;
+    z-index: 300;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 2px 8px #6c63ff22;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    transition: background var(--transition), transform var(--transition);
+}
+.sidebar-toggle-btn:hover {
+    background: var(--accent2);
+    transform: scale(1.08);
+}
+body.sidebar-collapsed .universal-sidebar.sophisticated {
+    width: 60px;
+    min-width: 60px;
+}
+body.sidebar-collapsed .universal-sidebar .sidebar-header,
+body.sidebar-collapsed .universal-sidebar .user-info,
+body.sidebar-collapsed .universal-sidebar nav ul li a span:not(.material-icons) {
+    display: none;
+}
+body.sidebar-collapsed main,
+body.sidebar-collapsed .footer {
+    margin-left: 60px;
+}
+main, .footer {
+    margin-left: 220px;
+    transition: margin-left var(--transition);
+}
+@media (max-width: 900px) {
+    .universal-sidebar.sophisticated {
+        width: 60px;
+        min-width: 60px;
+    }
+    .universal-sidebar .sidebar-header,
+    .universal-sidebar .user-info,
+    .universal-sidebar nav ul li a span:not(.material-icons) {
+        display: none;
+    }
+    main, .footer {
+        margin-left: 60px;
+    }
+    .sidebar-toggle-btn {
+        display: flex;
+    }
+}
+@media (max-width: 700px) {
+    .universal-sidebar.sophisticated {
+        position: fixed;
+        left: -220px;
+        width: 220px;
+        min-width: 220px;
+        transition: left var(--transition);
+    }
+    body.sidebar-open .universal-sidebar.sophisticated {
+        left: 0;
+    }
+    main, .footer {
+        margin-left: 0;
+    }
+    .sidebar-toggle-btn {
+        display: flex;
+    }
+}
+    </style>
+</head>
+<body>
+    <button class="sidebar-toggle-btn" aria-label="Toggle sidebar">
+        <span class="material-icons">menu</span>
+    </button>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Collagram</a>
+            <div class="nav-menu">
+                <a href="index.html" class="active">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="community.html">Community</a>
+                <a href="company.html">Friends</a>
+                <a href="blog.html">Blog</a>
+                <a href="dating.html">Dating</a>
+            </div>
+            <div class="nav-actions">
+                <a href="signup.html" class="signup">Sign Up</a>
+                <a href="login.html" class="login">Login</a>
+                <form class="search-box" action="search.html" method="get" autocomplete="off">
+                    <input type="text" name="q" placeholder="Search..." aria-label="Search" />
+                    <button type="submit" title="Search"><span class="material-icons">search</span></button>
+                </form>
+            </div>
+        </nav>
+
+<!-- Universal Sidebar Menu (Sophisticated Stylish Version) -->
+<aside class="universal-sidebar sophisticated">
+    </div>
+    <nav>
+    <ul>
+        <li><a href="index.html" class="active" target="_blank" rel="noopener"><span class="material-icons">home</span> <span>Home</span></a></li>
+        <li><a href="about.html" target="_blank" rel="noopener"><span class="material-icons">info</span> <span>About Us</span></a></li>
+        <li><a href="community.html" target="_blank" rel="noopener"><span class="material-icons">groups</span> <span>Community</span></a></li>
+        <li><a href="company.html" target="_blank" rel="noopener"><span class="material-icons">people</span> <span>Friends</span></a></li>
+        <li><a href="blog.html" target="_blank" rel="noopener"><span class="material-icons">description</span> <span>Blog</span></a></li>
+        <li><a href="dating.html" target="_blank" rel="noopener"><span class="material-icons">favorite</span> <span>Dating</span></a></li>
+        <li><a href="account.html" target="_blank" rel="noopener"><span class="material-icons">settings</span> <span>Account Settings</span></a></li>
+        <li><a href="archive.html" target="_blank" rel="noopener"><span class="material-icons">archive</span> <span>Archive</span></a></li>
+        <li><a href="activity.html" target="_blank" rel="noopener"><span class="material-icons">history</span> <span>Your Activity</span></a></li>
+        <li><a href="notifications.html" target="_blank" rel="noopener"><span class="material-icons">notifications</span> <span>Notifications</span></a></li>
+        <li><a href="signup.html" target="_blank" rel="noopener"><span class="material-icons">person_add</span> <span>Sign Up</span></a></li>
+        <li><a href="login.html" target="_blank" rel="noopener"><span class="material-icons">lock</span> <span>Login</span></a></li>
+        <li><a href="https://nextjs.org/" target="_blank" rel="noopener"><span class="material-icons">open_in_new</span> <span>Next Webpage</span></a></li>
+    </ul>
+    </nav>
+    </div>
+</aside>
+<main>
+    <!-- Your main content goes here -->
+    <section>
+    <h2>Welcome to Collagram</h2>
+    <p style="text-align:center; font-size:1.2rem; color:var(--primary-dark); margin-bottom:0;">
+        Connect, share, and grow your network with a modern, beautiful interface.
+    </p>
+    </section>
+
+<section>
+    <h2 style="margin-bottom: 0.5em;">Create an Account</h2>
+    <form action="signup.html" method="post" autocomplete="off">
+        <label for="signup-username">Username</label>
+        <input type="text" id="signup-username" name="username" placeholder="Choose a username" required>
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" name="email" placeholder="Enter your email" required>
+        <label for="signup-phone">Phone Number</label>
+        <input type="text" id="signup-phone" name="phone" placeholder="Enter your phone number" required>
+        <label for="signup-password">Password</label>
+        <input type="password" id="signup-password" name="password" placeholder="Create a password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+    <div class="or-divider">OR</div>
+    <div class="social-signup">
+        <a href="https://accounts.google.com/signin" target="_blank" rel="noopener" style="background:#fff;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/google/google-original.svg" alt="Google" />
+            Sign Up with Google
+        </a>
+        <a href="https://appleid.apple.com/" target="_blank" rel="noopener" style="background:#fff;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apple/apple-original.svg" alt="Apple" />
+            Sign Up with Apple
+        </a>
+        <a href="https://www.instagram.com/accounts/login/" target="_blank" rel="noopener" style="background:#fff;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/instagram/instagram-original.svg" alt="Instagram" />
+            Sign Up with Instagram
+        </a>
+        <a href="https://twitter.com/i/flow/login" target="_blank" rel="noopener" style="background:#fff;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/twitter/twitter-original.svg" alt="Twitter" />
+            Sign Up with Twitter
+        </a>
+        <a href="https://accounts.google.com/ServiceLogin?service=youtube" target="_blank" rel="noopener" style="background:#fff;">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/youtube/youtube-original.svg" alt="YouTube" />
+            Sign Up with YouTube
+        </a>
+    </div>
+    <div class="login-link">
+        Already have an account?
+        <a href="login.html">Login</a>
+    </div>
+</section>
+
+<section>
+    <h2 style="margin-bottom: 0.5em;">Music Streaming</h2>
+    <p style="text-align:center; font-size:1.1rem; color:var(--primary-dark); margin-bottom:1em;">
+        Stream your favorite music and discover new tracks. Access our music database or subscribe for premium features.
+    </p>
+    <div style="display:flex; flex-direction:column; gap:18px;">
+        <a href="https://www.jiosaavn.com/" target="_blank" rel="noopener" style="background:var(--accent2); color:#fff; font-weight:600; border-radius:8px; padding:14px 0; text-align:center; text-decoration:none; transition:background 0.2s;">
+            🎵 Browse Music Database
+        </a>
+        <a href="https://www.spotify.com/uk/premium/" target="_blank" rel="noopener" style="background:var(--primary); color:#fff; font-weight:600; border-radius:8px; padding:14px 0; text-align:center; text-decoration:none; transition:background 0.2s;">
+            🔒 Subscribe for Premium Access
+        </a>
+        <a href="https://www.flutterwave.com/" target="_blank" rel="noopener" style="background:#fcb900; color:#222; font-weight:600; border-radius:8px; padding:14px 0; text-align:center; text-decoration:none; transition:background 0.2s;">
+            💳 Pay with Flutterwave (GBP)
+        </a>
+        <a href="https://paystack.com/pay/your-uk-link" target="_blank" rel="noopener" style="background:#08c; color:#fff; font-weight:600; border-radius:8px; padding:14px 0; text-align:center; text-decoration:none; transition:background 0.2s;">
+            💳 Pay with Paystack (GBP)
+        </a>
+        <a href="https://commerce.coinbase.com/checkout/YOUR_UK_CHECKOUT_ID" target="_blank" rel="noopener" style="background:#1652f0; color:#fff; font-weight:600; border-radius:8px; padding:14px 0; text-align:center; text-decoration:none; transition:background 0.2s;">
+            🪙 Pay with Crypto (Coinbase GBP)
+        </a>
+        <a href="https://www.apple.com/uk/apple-pay/" target="_blank" rel="noopener" style="background:#000; color:#fff; font-weight:600; border-radius:8px; padding:14px 0; text-align:center; text-decoration:none; transition:background 0.2s;">
+             Pay with Apple Pay (UK)
+        </a>
+        <a href="https://pay.google.com/about/" target="_blank" rel="noopener" style="background:#4285f4; color:#fff; font-weight:600; border-radius:8px; padding:14px 0; text-align:center; text-decoration:none; transition:background 0.2s;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Pay" style="width:20px;vertical-align:middle;margin-right:8px;"> Pay with Google Pay (UK)
+        </a>
+    </div>
+    <div style="margin-top:2em;">
+        <h3 style="text-align:center; color:var(--primary-dark); margin-bottom:0.7em;">Subscription Plans & Fees</h3>
+        <div style="display:flex; flex-direction:column; gap:14px;">
+            <div style="background:var(--glass-bg); border-radius:10px; padding:18px; box-shadow:0 2px 8px #6c63ff22;">
+                <strong>Free Plan</strong><br>
+                <span style="color:var(--primary-dark);">Access limited tracks, ads supported.</span><br>
+                <span style="font-weight:600;">£0/month</span>
+            </div>
+            <div style="background:var(--glass-bg); border-radius:10px; padding:18px; box-shadow:0 2px 8px #6c63ff22;">
+                <strong>Premium Plan (UK)</strong><br>
+                <span style="color:var(--primary-dark);">Unlimited streaming, no ads, offline mode.</span><br>
+                <span style="font-weight:600;">£6.99/month</span>
+                <ul style="margin:10px 0 0 18px; color:var(--primary-dark); font-size:1rem;">
+                    <li>Monthly: <strong>£6.99</strong></li>
+                    <li>Quarterly: <strong>£19.99</strong> <span style="color:#888;">(£6.66/mo)</span></li>
+                    <li>Yearly: <strong>£75.99</strong> <span style="color:#888;">(£6.33/mo)</span></li>
+                </ul>
+                <div style="margin-top:10px;">
+                    <strong>Subscription Fees:</strong>
+                    <ul style="margin:8px 0 0 18px; color:var(--primary-dark); font-size:1rem;">
+                        <li>Activation Fee: <strong>£0.80</strong> (one-time)</li>
+                        <li>Cancellation Fee: <strong>£2.00</strong> (if cancelled before 3 months)</li>
+                        <li>Upgrade Fee: <strong>£0.70</strong> (when upgrading plan)</li>
+                    </ul>
+                </div>
+                <form action="https://www.flutterwave.com/" method="get" target="_blank" style="margin-top:10px;">
+                    <button type="submit" style="background:#fcb900; color:#222; font-weight:600; border:none; border-radius:6px; padding:10px 24px; cursor:pointer; margin-top:4px;">
+                        Subscribe with Flutterwave (GBP)
+                    </button>
+                </form>
+                <form action="https://paystack.com/pay/your-uk-link" method="get" target="_blank" style="margin-top:8px;">
+                    <button type="submit" style="background:#08c; color:#fff; font-weight:600; border:none; border-radius:6px; padding:10px 24px; cursor:pointer;">
+                        Subscribe with Paystack (GBP)
+                    </button>
+                </form>
+                <form action="https://commerce.coinbase.com/checkout/YOUR_UK_CHECKOUT_ID" method="get" target="_blank" style="margin-top:8px;">
+                    <button type="submit" style="background:#1652f0; color:#fff; font-weight:600; border:none; border-radius:6px; padding:10px 24px; cursor:pointer;">
+                        Subscribe with Crypto (GBP)
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="terms" style="margin-top:1.5em;">
+        <strong>Note:</strong> Subscription unlocks unlimited streaming and exclusive tools.<br>
+        <span style="color:var(--primary-dark); font-size:0.98em;">All fees are in GBP. Taxes may apply based on your region.</span>
+    </div>
+</section>
+
+
+</main>
+<footer class="footer sophisticated-footer">
+    <div class="footer-container">
+    <div class="footer-logo">
+        <a href="index.html" class="logo">Collagram</a>
+    </div>
+    <div class="footer-menu">
+        <a href="index.html">Home</a>
+        <a href="about.html">About Us</a>
+        <a href="community.html">Community</a>
+        <a href="company.html">Friends</a>
+        <a href="blog.html">Blog</a>
+        <a href="dating.html">Dating</a>
+    </div>
+    <div class="footer-links">
+        <a href="privacy.html">Privacy Notice</a>
+        <a href="terms.html">Terms &amp; Conditions</a>
+    </div>
+    </div>
+    <div class="footer-bottom">
+    <span class="footer-gradient-text">&copy; 2024 Collagram. All rights reserved.</span>
+    </div>
+</footer>
+<script>
+// Sidebar collapse/expand
+const sidebarToggleBtn = document.querySelector('.sidebar-toggle-btn');
+const body = document.body;
+function toggleSidebar() {
+    if(window.innerWidth <= 700) {
+    body.classList.toggle('sidebar-open');
+    } else {
+    body.classList.toggle('sidebar-collapsed');
+    }
+}
+sidebarToggleBtn.addEventListener('click', toggleSidebar);
+window.addEventListener('resize', () => {
+    if(window.innerWidth > 700) {
+    body.classList.remove('sidebar-open');
+    }
+});
+
+// Dark mode toggle
+const themeToggleBtn = document.querySelector('.sidebar-theme-toggle');
+const themeIcon = document.getElementById('theme-icon');
+function setDarkMode(on) {
+    if(on) {
+    document.documentElement.style.setProperty('--bg', '#181a20');
+    document.documentElement.style.setProperty('--glass-bg', 'rgba(24,26,32,0.85)');
+    document.documentElement.style.setProperty('--text', '#f7f8fc');
+    document.documentElement.style.setProperty('--text-light', '#fff');
+    document.documentElement.style.setProperty('--input-bg', 'rgba(36,38,48,0.7)');
+    document.documentElement.style.setProperty('--input-border', '#444');
+    document.documentElement.style.setProperty('--shadow', '0 8px 32px 0 rgba(0,0,0,0.28)');
+    document.documentElement.style.setProperty('--header-bg', 'linear-gradient(90deg, #23235b 0%, #1e7c5a 100%)');
+    document.documentElement.style.setProperty('--footer-bg', 'linear-gradient(90deg, #23235b 0%, #a13e5a 100%)');
+    themeIcon.textContent = 'light_mode';
+    } else {
+    document.documentElement.style.setProperty('--bg', '#f7f8fc');
+    document.documentElement.style.setProperty('--glass-bg', 'rgba(255,255,255,0.7)');
+    document.documentElement.style.setProperty('--text', '#22223B');
+    document.documentElement.style.setProperty('--text-light', '#fff');
+    document.documentElement.style.setProperty('--input-bg', 'rgba(233,234,252,0.7)');
+    document.documentElement.style.setProperty('--input-border', '#bfc6ff');
+    document.documentElement.style.setProperty('--shadow', '0 8px 32px 0 rgba(31, 38, 135, 0.18)');
+    document.documentElement.style.setProperty('--header-bg', 'linear-gradient(90deg, #6C63FF 0%, #43E6B0 100%)');
+    document.documentElement.style.setProperty('--footer-bg', 'linear-gradient(90deg, #4B47B6 0%, #FF6584 100%)');
+    themeIcon.textContent = 'dark_mode';
+    }
+}
+let darkMode = false;
+themeToggleBtn.addEventListener('click', () => {
+    darkMode = !darkMode;
+    setDarkMode(darkMode);
+});
+</script>
+</body>
+</html>
